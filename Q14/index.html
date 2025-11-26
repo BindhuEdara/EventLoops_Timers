@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  console.log("Begin");
+    setTimeout(() => {
+      console.log("Timeout Task");
+    }, 0);
+    Promise.resolve().then(() => {
+      console.log("Promise Task");
+    });
+    console.log("End");
+
+// The script JS code is correct , first it will execute the synchronous tasks.
+// Then it will execute the promises because they will always run before the setTimeOut tasks.
+// At last setTimeOut task will execute eventhough the time delay is 0 , it is given to the         webAPI's then wait in the callbackQueue, then the task will execute.
+// like this the code is executed.
+// the output is Begin, End, Promise Task, Timeout Task.
+</script>
+</html>
