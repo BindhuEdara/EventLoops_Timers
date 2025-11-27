@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+  </head>
+
+  <body>
+
+  </body>
+
+  <script>
+    window.onload = function () {
+      // 1. Ask user for number of seconds
+
+      let seconds = parseInt(prompt("Enter seconds to start countdown:"), 10);
+      if (isNaN(seconds) || seconds <= 0) {
+        console.log("Please enter a valid positive number.");
+        return;
+      }
+      console.log(`Countdown starting from ${seconds} seconds...`);
+      let stopRequested = false;
+
+      // 2. Detect key press with delay using setTimeout
+
+      document.addEventListener("keydown", function (event) {
+        setTimeout(() => {
+          if (event.key.toLowerCase() === "s") {
+            stopRequested = true;
+            console.log("Stop key detected! Countdown stopped.");
+          }
+        }, 200);
+      });
+
+      // 3. Start countdown using setInterval
+
+      let timer = setInterval(() => {
+        if (stopRequested) {
+          clearInterval(timer);
+          return;
+        }
+        console.log("Remaining:", seconds, "seconds");
+        seconds--;
+        if (seconds < 0) {
+          clearInterval(timer);
+          console.log("Countdown Complete!");
+        }
+      }, 1000);
+    }; // window.onload end
+  </script>
+
+</html>
